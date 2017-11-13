@@ -424,7 +424,7 @@ class TwitterAds extends Config
      * @throws ServerError
      * @throws ServiceUnavailable
      */
-    private function http($method, $host, $path, array $parameters, $headers = [])
+    protected function http($method, $host, $path, array $parameters, $headers = [])
     {
         $this->method = $method;
         $this->resource = $path;
@@ -432,7 +432,7 @@ class TwitterAds extends Config
         if (strpos($path, TONUpload::DEFAULT_DOMAIN) === 0) {
             $url = $path;
         } else {
-            if ($host == self::UPLOAD_HOST) {
+            if ($host == self::UPLOAD_HOST || $host == self::API_HOST_OAUTH) {
                 $url = sprintf('%s/%s/%s', $host, self::API_REST_VERSION, $path);
             } else {
                 $url = sprintf('%s/%s/%s', $host, self::API_VERSION, $path);
