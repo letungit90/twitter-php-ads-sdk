@@ -112,11 +112,12 @@ class TwitterAds extends Config
     }
 
     /**
+     * @param array $params
      * @return Account|Cursor
      */
-    public function getAccounts()
+    public function getAccounts($params = [])
     {
-        return (new Account($this))->all();
+        return (new Account($this))->all($params);
     }
 
     /**
