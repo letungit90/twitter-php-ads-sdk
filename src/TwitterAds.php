@@ -376,7 +376,7 @@ class TwitterAds extends Config
                     'command' => 'APPEND',
                     'media_id' => $init->media_id_string,
                     'segment_index' => $segment_index++,
-                    'media_data' => base64_encode(fread($media, self::UPLOAD_CHUNK)),
+                    'media_data' => base64_encode(fread($media, static::UPLOAD_CHUNK)),
                 ]
             )->getBody();
         }
@@ -434,9 +434,9 @@ class TwitterAds extends Config
             $url = $path;
         } else {
             if ($host == self::UPLOAD_HOST || $host == self::API_HOST_OAUTH) {
-                $url = sprintf('%s/%s/%s', $host, self::API_REST_VERSION, $path);
+                $url = sprintf('%s/%s/%s', $host, static::API_REST_VERSION, $path);
             } else {
-                $url = sprintf('%s/%s/%s', $host, self::API_VERSION, $path);
+                $url = sprintf('%s/%s/%s', $host, static::API_VERSION, $path);
             }
         }
 
